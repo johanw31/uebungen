@@ -119,3 +119,35 @@ void printstr (char *s){
 	}
 }
 
+
+float getfloat(){
+	float a;
+	scanf("%f",&a);
+	getchar();
+	return a;
+}
+
+
+
+void quickSort (int* A, int L , int R){
+	int n = sizeof(A) / sizeof(int);
+	int i = 0,j=n-1;
+	int pivot = A[i];
+
+	while (i < j){
+		do {
+			i++;
+		} while (A[i]<pivot);
+		do {
+			j--;
+		} while (A[j]>pivot);
+		if (i<j)swapInt (&A[i],&A[j]);
+	}
+	swapInt (&A[j],&A[0]);
+    
+}
+
+
+
+
+
