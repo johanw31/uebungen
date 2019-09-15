@@ -90,7 +90,9 @@ void swapInt(int *A, int *B) {
 int ggt(int A, int B) {
 	int GGT;
 	int rest = 1;
-	if (A < B) { swapInt (&A,&B);}
+	if (A < B) {
+		swapInt(&A, &B);
+	}
 	while (rest) {
 		rest = A % B;
 		GGT = A / B;
@@ -101,51 +103,149 @@ int ggt(int A, int B) {
 
 }
 
-int kgv (int A, int B){
-	return (A / ggt(A,B))*B;
+int kgv(int A, int B) {
+	return (A / ggt(A, B)) * B;
 }
 
-void strcopy (char* source, char* copy){
+void strcopy(char *source, char *copy) {
 	int n = strlength(source);
-	int i=0;
-	for (;i<n;i++){
+	int i = 0;
+	for (; i < n; i++) {
 		copy[i] = source[i];
 	}
 }
 
-void printstr (char *s){
-	while (s){
-	putchar(*s++);
+void printstr(char *s) {
+	while (s) {
+		putchar(*s++);
 	}
 }
 
-
-float getfloat(){
+float getfloat() {
 	float a;
-	scanf("%f",&a);
+	scanf("%f", &a);
 	getchar();
 	return a;
 }
 
-
-
-void quickSort (int* A, int L , int R){
+void quickSort(int *A) {
 	int n = sizeof(A) / sizeof(int);
-	int i = 0,j=n-1;
+	int i = 0, j = n - 1;
 	int pivot = A[i];
 
-	while (i < j){
+	while (i < j) {
 		do {
 			i++;
-		} while (A[i]<pivot);
+		} while (A[i] < pivot);
 		do {
 			j--;
-		} while (A[j]>pivot);
-		if (i<j)swapInt (&A[i],&A[j]);
+		} while (A[j] > pivot);
+		if (i < j)
+			swapInt(&A[i], &A[j]);
 	}
-	swapInt (&A[j],&A[0]);
-    
+	swapInt(&A[j], &A[0]);
+	int L[j], R[n - j];
+	for (int k = 0; k < j; k++)
+		L[k] = A[k];
+	for (int k = 0; k < (n - j); k++)
+		R[k] = A[(n - j) + k];
+	if (n > 1) {
+		quickSort(L);
+		quickSort(R);
+	}
 }
+
+int uebung5aufgabe3_2(int n) {
+	if (n == 1)
+		return 1;
+	return uebung5aufgabe3_2(n - 1) + 2 * n - 1;
+}
+
+void cop(char *a, char *b) {
+	while (*a) {
+		*b = *a;
+		a++;
+		b++;
+	}
+}
+
+void swapChar(char *a, char *b) {
+	int tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+void bubbleSort(int a[]) {
+	int n = 19;
+	int i, j = 0;
+	for (; j < n; j++) {
+		for (i = 0; i < n - 1; i++) {
+			if (a[i] > a[i + 1])
+				swapInt(&a[i], &a[i + 1]);
+		}
+	}
+}
+
+void strEncode(char *s) {
+	do {
+		*s ^= MASK;
+	} while (*++s);
+}
+
+void strDecode(char *s) {
+	do {
+		*s ^= MASK;
+	} while (*++s);
+}
+
+int rekSum(int n) {
+	if (n)
+		return n + rekSum(n - 1);
+	else
+		return 0;
+}
+
+void printBinaery (unsigned int a){
+	if (a<2) printf ("%d",a);
+	else {
+		printBinaery (a/2);
+		printf ("%d",a%2);
+	}
+}
+
+double test1 (double x , int n){
+	if (n>0) return x * test1 (x,n-1);
+	if (n<0) return 1/x * test1 (x,n+1);
+	else return 1;
+}
+
+double test2 (double x , int n){
+	double tmp = 1;
+	if (n>0){
+		while (n){
+			tmp = tmp*x;
+			n--;
+		}
+	}
+	if (n<0){
+		while (n) {
+			tmp = tmp*1/x;
+			n++;
+		}
+	}
+	return tmp;
+}
+
+char* returnString (){
+	return "Hallo Welttt";
+}
+
+int rekursivKgv (int a, int b, int m){
+   if ((m*a)%b) return rekursivKgv (a,b,m+1);
+   else return (m*a);
+}
+
+
 
 
 
